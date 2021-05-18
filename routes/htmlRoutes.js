@@ -1,7 +1,7 @@
 // included path package to properly path our HTML
 const path = require('path');
 
-htmlRoute = function (app) {
+htmlRouter = function (app) {
     app.get("/notes", function (req, res) {
         res.sendFile(path.join(__dirname, "../public/notes.html"));
     });
@@ -10,4 +10,4 @@ htmlRoute = function (app) {
     });
 }
 
-module.exports = htmlRoute;
+module.exports = htmlRouter;
