@@ -16,5 +16,8 @@
   "bugs": {
     "url": "https://github.com/BeeNorrg/express_notes/issues"
   },
-  "homepage": "https://github.com/BeeNorrg/express_notes#readme"
+  "homepage": "https://github.com/BeeNorrg/express_notes#readme",
+  "devDependencies": {
+    "nodemon": "^2.0.7"
+  }
 }
