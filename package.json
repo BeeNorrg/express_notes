@@ -1,0 +1,20 @@
+{
+  "name": "express_notes",
+  "version": "1.0.0",
+  "description": "a note take built using express",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/BeeNorrg/express_notes.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/BeeNorrg/express_notes/issues"
+  },
+  "homepage": "https://github.com/BeeNorrg/express_notes#readme"
+}
