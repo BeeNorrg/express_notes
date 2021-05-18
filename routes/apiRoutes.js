@@ -18,6 +18,25 @@ function getNotes() {
 };
 
 function writeNotes() {
-    app.post("/api/notes/", function (req, res) {});
+    //gets new note from notes and gives it an id, then adds it to 
+    app.post("/api/notes/", function (req, res) {
+        //gets note from body
+        let newNote = req.body;
+        //generates an id from the new note
+        newNoteID = currentID + 1;
+        //gives the new note an id
+        newNote['id'] = newNoteID;
+        //sets currentID to the previous ID
+        currentID = newNoteID;
+        //pushes new note to the database
+        noteStorage.push(newNote);
+        //writes database to noteStorage
+        fs.writeFile("../db/db.json", JSON.stringify(noteStorage), (err) => {
+            if (err) {
+                console.log(error);
+            }
+            console.log("success! new note saved!");
+        })
+    });
 };
 
