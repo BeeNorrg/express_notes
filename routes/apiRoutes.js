@@ -16,29 +16,25 @@ module.exports = function noteTaker(app) {
     app.post("/api/notes/", function (req, res) {
         //ready a new ID for the new note
         let newID = currentID + 1;
-        //reads db.json to get notes
-        fs.readFile("../db/db.json", (err, data) => {
-            //variable that parses db.json
-            const fileRead = JSON.parse(data);
+        /   /reads db.json to get notes
             newNote = req.body;
             newNote["id"] = newID;
+            currentID = newID;
             console.log('newNote:', newNote);
+            noteStorage.push(newNote);
             
-            
-
-        })
-        //writes database to noteStorage
-        fs.writeFile("../db/db.json", JSON.stringify(noteStorage), (err) => {
+            //writes database to noteStorage
+            fs.writeFile("../db/db.json", JSON.stringify(noteStorage), (err) => {
             if (err) {
-                console.log(error);
+            console.error(error);
             }
             console.log("success! new note saved!");
-        })
+        });
     });
     //deletes note 
     app.delete('/user', function (req, res) {
-        res.send('Got a DELETE request at /user')
-      })
-    };
+    res.send('Got a DELETE request at /user')
+    })
+};
   
 
