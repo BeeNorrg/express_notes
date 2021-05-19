@@ -3,6 +3,8 @@ const path = require("path");
 const fs = require("fs");
 //require db to get notes
 const noteStorage = require("../db/db.json");
+//require express to parse data
+const express = require("express");
 
 let currentID = 0;
 
@@ -12,16 +14,19 @@ module.exports = function noteTaker(app) {
         });
     //gets new note from notes and gives it an id, then adds it to 
     app.post("/api/notes/", function (req, res) {
-        //gets note from body
-        let newNote = req.body;
-        //generates an id from the new note
-        newNoteID = currentID + 1;
-        //gives the new note an id
-        newNote['id'] = newNoteID;
-        //sets currentID to the previous ID
-        currentID = newNoteID;
-        //pushes new note to the database
-        noteStorage.push(newNote);
+        //ready a new ID for the new note
+        let newID = currentID + 1;
+        //reads db.json to get notes
+        fs.readFile("../db/db.json", (err, data) => {
+            //variable that parses db.json
+            const fileRead = JSON.parse(data);
+            newNote = req.body;
+            newNote["id"] = newID;
+            console.log('newNote:', newNote);
+            
+            
+
+        })
         //writes database to noteStorage
         fs.writeFile("../db/db.json", JSON.stringify(noteStorage), (err) => {
             if (err) {
