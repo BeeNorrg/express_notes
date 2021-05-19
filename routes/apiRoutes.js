@@ -10,7 +10,7 @@ module.exports = function noteTaker(app) {
     app.get("/api/notes", function (req, res) {
         res.json(noteStorage);
         });
-         //gets new note from notes and gives it an id, then adds it to 
+    //gets new note from notes and gives it an id, then adds it to 
     app.post("/api/notes/", function (req, res) {
         //gets note from body
         let newNote = req.body;
@@ -30,6 +30,10 @@ module.exports = function noteTaker(app) {
             console.log("success! new note saved!");
         })
     });
+    //deletes note 
+    app.delete('/user', function (req, res) {
+        res.send('Got a DELETE request at /user')
+      })
     };
   
 
