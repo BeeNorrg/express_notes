@@ -6,19 +6,11 @@ const noteStorage = require("../db/db.json");
 
 let currentID = 0;
 
-let apiObj = {
-    getNotes: getNotes(),
-    writeNotes: writeNotes(),
-};
-
-function getNotes() {
+module.exports = function noteTaker(app) {
     app.get("/api/notes", function (req, res) {
         res.json(noteStorage);
-    });
-};
-
-function writeNotes() {
-    //gets new note from notes and gives it an id, then adds it to 
+        });
+         //gets new note from notes and gives it an id, then adds it to 
     app.post("/api/notes/", function (req, res) {
         //gets note from body
         let newNote = req.body;
@@ -38,5 +30,6 @@ function writeNotes() {
             console.log("success! new note saved!");
         })
     });
-};
+    };
+  
 
