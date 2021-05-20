@@ -22,7 +22,7 @@ module.exports = function noteTaker(app) {
         noteStorage.push(newNote);
             
         //writes database to noteStorage
-        fs.writeFile("../db/db.json", JSON.stringify(noteStorage), (err) => {
+        fs.writeFile("./db/db.json", JSON.stringify(noteStorage), (err) => {
             if (err) {
                 console.error(err);
             }
@@ -33,7 +33,14 @@ module.exports = function noteTaker(app) {
     //deletes note 
     app.delete('/api/notes/:id', function (req, res) {
         let deleteID = req.params.id;
-        let postDelete = noteStorage.filter(note => note.id !== req.params.id);
+        let postDelete = noteStorage.filter(note => note.id !== deleteID);
+        //writes database to noteStorage
+        fs.writeFile("./db/db.json", JSON.stringify(postDelete), (err) => {
+            if (err) {
+                console.error(err);
+            }
+            console.log("success!");
+        });
     })
 };
   
