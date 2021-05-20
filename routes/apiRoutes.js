@@ -7,6 +7,7 @@ const { v4: uuidv4 } = require('uuid');
 const noteStorage = require("../db/db.json");
 //require express to parse data
 const express = require("express");
+const { resolveSoa } = require("dns");
 
 module.exports = function noteTaker(app) {
     app.get("/api/notes", function (req, res) {
@@ -41,7 +42,7 @@ module.exports = function noteTaker(app) {
             }
             console.log("success!");
         });
-
+        res.json(postDelete);
     })
 };
   
