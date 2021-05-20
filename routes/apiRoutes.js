@@ -33,7 +33,7 @@ module.exports = function noteTaker(app) {
     //deletes note 
     app.delete('/api/notes/:id', function (req, res) {
         let deleteID = req.params.id;
-        
+        let postDelete = noteStorage.filter(note => note.id !== req.params.id);
     })
 };
   
