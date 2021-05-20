@@ -1,23 +1,23 @@
 //include path and fs to be able to path to our html and write to files
 const path = require("path");
 const fs = require("fs");
+//require uuidv4 to generate random id's
+const { v4: uuidv4 } = require('uuid');
 //require db to get notes
 const noteStorage = require("../db/db.json");
 //require express to parse data
 const express = require("express");
 
 module.exports = function noteTaker(app) {
-    let currentID = 0;
     app.get("/api/notes", function (req, res) {
         res.json(noteStorage);
         });
     //gets new note from notes and gives it an id, then adds it to 
     app.post("/api/notes/", function (req, res) {
         //ready a new ID for the new note
-        let newID = currentID + 1;
         newNote = req.body;
-        newNote["id"] = newID;
-        currentID = newID;
+        //use uuidv4 to generate random id 
+        newNote["id"] = uuidv4();
         console.log('newNote:', newNote);
         noteStorage.push(newNote);
             
@@ -41,7 +41,7 @@ module.exports = function noteTaker(app) {
             }
             console.log("success!");
         });
-        
+
     })
 };
   
