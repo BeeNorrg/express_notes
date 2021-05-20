@@ -31,8 +31,9 @@ module.exports = function noteTaker(app) {
         res.send();
     });
     //deletes note 
-    app.delete('/user', function (req, res) {
-    res.send('Got a DELETE request at /user')
+    app.delete('/api/notes/:id', function (req, res) {
+        let deleteID = req.params.id;
+        
     })
 };
   
