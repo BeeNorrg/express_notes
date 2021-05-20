@@ -4,7 +4,7 @@ const fs = require("fs");
 //require uuidv4 to generate random id's
 const { v4: uuidv4 } = require('uuid');
 //require db to get notes
-const noteStorage = require("../db/db.json");
+let noteStorage = require("../db/db.json");
 //require express to parse data
 const express = require("express");
 const { resolveSoa } = require("dns");
@@ -42,6 +42,7 @@ module.exports = function noteTaker(app) {
             }
             console.log("success!");
         });
+        noteStorage = postDelete;
         res.json(postDelete);
     })
 };
